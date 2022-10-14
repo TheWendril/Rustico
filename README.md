@@ -1,0 +1,2 @@
+# Rustico
+A rustic blog!
