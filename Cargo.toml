@@ -10,8 +10,3 @@ rocket = { version = "0.5.0-rc.2", features = ["json"] }
 mongodb = "2.3.1"
 
 
-[dependencies.mongodb]
-version = "2.3.1"
-default-features = false
-features = ["async-std-runtime"]
-features = ["tokio-sync"]
