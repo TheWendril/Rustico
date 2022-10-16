@@ -1,4 +1,5 @@
 #[macro_use] extern crate rocket;
+mod Routes;
 
 #[get("/")]
 fn mainpage() -> &'static str{
