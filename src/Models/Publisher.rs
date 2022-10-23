@@ -1,10 +1,10 @@
-use rocket::serde::{Serialize, Deserialize, json::Json};
+use rocket::serde::{Serialize, Deserialize};
 
 #[derive(Serialize)]
 #[derive(Deserialize)]
 #[serde(crate = "rocket::serde")]
 pub struct Publisher{
-    name: str,
-    education: str, 
+    name: String,
+    education: String, 
     age: i16
 }

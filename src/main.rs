@@ -1,5 +1,6 @@
 #[macro_use] extern crate rocket;
 mod Routes;
+mod Models;
 
 #[get("/")]
 fn mainpage() -> &'static str{
@@ -8,5 +9,5 @@ fn mainpage() -> &'static str{
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![mainpage])
+    rocket::build().mount("/", routes![mainpage, Routes::Post::getpost, Routes::Post::insertPost])
 }
