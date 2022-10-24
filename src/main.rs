@@ -1,6 +1,9 @@
+
+
 #[macro_use] extern crate rocket;
 mod Routes;
 mod Models;
+mod DB;
 
 #[get("/")]
 fn main_page() -> &'static str{
