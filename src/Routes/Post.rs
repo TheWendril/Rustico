@@ -1,14 +1,14 @@
 use super::super::Models::PostModel::PostModel;
-use rocket::form::Form;
+use rocket::serde::{json::Json};
 
 
-#[get("/post/<postTitle>")]
-pub fn getpost(postTitle: &str) -> String {
-    format!("O nome do seu post é: {}!", postTitle)
+#[get("/post/<post_title>")]
+pub fn get_post(post_title: &str) -> String {
+    format!("O nome do seu post é: {}!", post_title)
 }
 
-#[post("/post", data = "<postmodel>")]
-pub fn insertPost(postmodel: Form<PostModel>) -> String {
+#[post("/post", format = "json", data = "<postmodel>")]
+pub fn insert_post(postmodel: Json<PostModel>) -> String {
 
-    format!("O nome do seu post é: {}!", postmodel.title)
+    format!("Sua key é: {}!", postmodel.title)
 }
