@@ -4,6 +4,7 @@ use rocket::serde::{Serialize, Deserialize};
 #[derive(Deserialize)]
 #[serde(crate = "rocket::serde")]
 pub struct Publisher{
+    id: i8,
     name: String,
     access_level: i8,
     password: String,
