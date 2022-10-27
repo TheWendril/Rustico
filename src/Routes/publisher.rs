@@ -6,8 +6,6 @@ use super::super::DB::dbconnector;
 use rocket::{serde::{json::Json}, http::Status};
 
 
-
-
 #[get("/publisher/<publisher_id>")]
 pub fn get_publisher_by_id(publisher_id: i8) -> Json<Publisher> {
 
