@@ -12,7 +12,7 @@ use rocket::{serde::{json::Json}, http::Status};
 pub fn get_publisher_by_id(publisher_id: i8) -> Json<Publisher> {
 
     let dbcon: dbconnector::DbConnector = dbconnector::DbConnector::new();
-    let mut query_string: String = String::from(" SELECT * FROM posts WHERE id = ");   
+    let mut query_string: String = String::from(" SELECT * FROM publishers WHERE id = ");   
     query_string.push_str(publisher_id.as_str());
 
 
