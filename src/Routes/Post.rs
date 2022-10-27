@@ -41,7 +41,8 @@ pub fn insert_post(postmodel: Json<PostModel>) -> String {
     dbcon.conn.execute( "INSERT INTO posts (title, image, content, author, tag, likes) 
                          VALUES (?1, ?2, ?3, ?4, ?5, ?6)", 
                         (&postmodel.title, &postmodel.image, &postmodel.content, 
-                         &postmodel.author, &postmodel.tag, &postmodel.likes));
+                         &postmodel.author, &postmodel.tag, &postmodel.likes)).unwrap();
 
-    return format!("Sua key é: {}!", postmodel.title)
+
+    return format!("Inserindo {} no banco de dados!", postmodel.title)
 }
