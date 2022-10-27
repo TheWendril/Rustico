@@ -1,18 +1,11 @@
-use rocket::http::private::Connection;
-use sqlite;
+use rusqlite;
 
-
-struct DbConnector{
-    
-    conn: sqlite::Connection
- 
+pub struct DbConnector{
+    pub conn: rusqlite::Connection 
 }
 
 impl DbConnector{    
-
-    fn new() -> Self{
-           
-        Self { conn: sqlite::open("~/rusticodb").unwrap() }
+    pub fn new() -> Self{
+        Self { conn: rusqlite::Connection::open("~/rusticodb.db").unwrap() }
     }
-
 }
