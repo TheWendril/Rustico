@@ -4,19 +4,18 @@
 use super::super::Models::PostModel::PostModel;
 use super::super::DB::dbconnector;
 use rocket::serde::{json::Json};
-use rusqlite::{NO_PARAMS};
 
 #[get("/post/<post_title>")]
 pub fn get_post(post_title: &str) -> Json<PostModel> {
 
     let dbcon: dbconnector::DbConnector = dbconnector::DbConnector::new();
-    let mut queryString: String = String::from(" SELECT * FROM posts WHERE title = ");   
-    queryString.push_str(post_title);
+    let mut query_string: String = String::from(" SELECT * FROM posts WHERE title = ");   
+    query_string.push_str(post_title);
     
-    let mut queryResult = dbcon.conn.prepare(&queryString.as_str()).unwrap();
-    queryResult.column_count();
+    let mut query_result = dbcon.conn.prepare(&query_string.as_str()).unwrap();
+    query_result.column_count();
 
-    let mappedRows = queryResult.query_map(NO_PARAMS, |row| {
+    let mapped_rows = query_result.query_map([], |row| {
         Ok(PostModel{
             title: row.get(0)?,
             image: row.get(1)?,
@@ -27,12 +26,12 @@ pub fn get_post(post_title: &str) -> Json<PostModel> {
         })
     }).unwrap();
 
-    let mut newPostModel: PostModel = mappedRows.into_iter()
-                                                .next()
-                                                .unwrap()
-                                                .ok()
-                                                .unwrap();
-    return Json(newPostModel)
+    let new_post_model: PostModel = mapped_rows.into_iter()
+                                                 .next()
+                                                 .unwrap()
+                                                 .ok()
+                                                 .unwrap();
+    return Json(new_post_model)
 }
 
 #[post("/post", format = "json", data = "<postmodel>")]
