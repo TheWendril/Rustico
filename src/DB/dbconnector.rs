@@ -6,6 +6,6 @@ pub struct DbConnector{
 
 impl DbConnector{    
     pub fn new() -> Self{
-        Self { conn: rusqlite::Connection::open("~/rusticodb.db").unwrap() }
+        Self { conn: rusqlite::Connection::open("/home/wendril/rusticodb").unwrap() }
     }
 }
