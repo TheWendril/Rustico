@@ -18,19 +18,19 @@ pub fn get_publisher_by_id(publisher_id: i8) -> Json<Publisher> {
 
     let mapped_rows = query_result.query_map([], |row| {
 
-        let pb = PublisherBuilder::new();
-
-        Ok( PublisherBuilder::new()
-                             .id(row.get(0)?)
-                             .name(row.get(1)?)
-                             .email(row.get(2)?)
-                             .access_level(row.get(3)?)
-                             .password(row.get(4)?)
-                             .picture(row.get(5)?)
-                             .bio(row.get(6)?)
-                             .education(row.get(7)?)
-                             .age(row.get(8)?)
-                             .build())
+        Ok( 
+            Publisher {
+                        id: row.get(0)?,
+                        name: row.get(1)?,
+                        email: row.get(2)?,
+                        access_level: row.get(3)?,
+                        password: row.get(4)?,
+                        picture: row.get(5)?,
+                        bio: row.get(6)?,
+                        education: row.get(7)?,
+                        age: row.get(8)?
+                      }
+        )
         }).unwrap();
 
     let new_publisher: Publisher = mapped_rows.into_iter()

@@ -15,6 +15,7 @@ pub struct Publisher{
     age: i8
 }
 
+// Código Inútil mas que não vou remover por enquanto ----------------->
 pub trait PublisherBuilder{
     fn new() -> Publisher;
     fn id(self, id: i8) -> Self;
