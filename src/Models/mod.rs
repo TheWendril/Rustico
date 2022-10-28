@@ -1,3 +1,3 @@
-pub mod PostModel;
-pub mod Publisher;
+pub mod postmodel;
+pub mod publishermodel;
 pub mod Tag;

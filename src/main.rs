@@ -13,5 +13,6 @@ fn main_page() -> &'static str{
 #[launch]
 fn rocket() -> _ {
     rocket::build().mount("/", routes![main_page, Routes::Post::get_post, Routes::Post::insert_post, 
-                                       Routes::Post::get_all_posts, Routes::Post::delete_post])
+                                       Routes::Post::get_all_posts, Routes::Post::delete_post,
+                                       Routes::publisher::get_publisher_by_id])
 }

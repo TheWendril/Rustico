@@ -1,7 +1,7 @@
 // Que Deus me perdoe por esse código...
 // Escrito por Wendril Avila
 
-use super::super::Models::PostModel::PostModel;
+use super::super::Models::postmodel::PostModel;
 use super::super::DB::dbconnector;
 use rocket::{serde::{json::Json}, http::Status};
 
@@ -36,9 +36,9 @@ pub fn insert_post(postmodel: Json<PostModel>) -> Status {
     
     let dbcon: dbconnector::DbConnector = dbconnector::DbConnector::new();
     let query_execution = dbcon.conn.execute( "INSERT INTO posts (title, image, content, author, tag, likes) 
-                                                                     VALUES (?1, ?2, ?3, ?4, ?5, ?6)", 
-                                                                     (&postmodel.title, &postmodel.image, &postmodel.content, 
-                                                                     &postmodel.author, &postmodel.tag, &postmodel.likes));
+                                               VALUES (?1, ?2, ?3, ?4, ?5, ?6)", 
+                                               (&postmodel.title, &postmodel.image, &postmodel.content, 
+                                                &postmodel.author, &postmodel.tag, &postmodel.likes));
     if query_execution.is_err() {return Status::InternalServerError} 
     else {return Status::Ok}
     
