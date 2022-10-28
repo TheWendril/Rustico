@@ -4,15 +4,15 @@ use rocket::serde::{Serialize, Deserialize};
 #[derive(Deserialize)]
 #[serde(crate = "rocket::serde")]
 pub struct Publisher{
-    id: i8,
-    name: String,
-    email: String,
-    access_level: i8,
-    password: String,
-    picture: String, 
-    bio: String,
-    education: String, 
-    age: i8
+    pub id: i8,
+    pub name: String,
+    pub email: String,
+    pub access_level: i8,
+    pub password: String,
+    pub picture: String, 
+    pub bio: String,
+    pub education: String, 
+    pub age: i8
 }
 
 // Código Inútil mas que não vou remover por enquanto ----------------->
