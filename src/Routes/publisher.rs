@@ -88,3 +88,17 @@ pub fn get_all_publishers() -> Json<Vec<Publisher>>{
 
     Json(posts_vector)
 }
+
+#[delete("/publisher/<id>")]
+pub fn delete_publisher(id: i8) -> Status{
+
+    let dbcon: dbconnector::DbConnector = dbconnector::DbConnector::new();
+    let mut query_string: String = String::from(" DELETE FROM posts WHERE id = '");   
+    query_string.push_str(id.to_string().as_str());
+    query_string.push_str("'");
+
+    let query_result = dbcon.conn.execute(&query_string.as_str(), []);
+
+    if query_result.is_err() {return Status::FailedDependency} 
+    else {return Status::Ok}
+}
