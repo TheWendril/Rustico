@@ -7,7 +7,7 @@ mod DB;
 
 #[get("/")]
 fn main_page() -> &'static str{
-    return "Hello World"
+    return "Rustico API"
 }
 
 #[launch]
