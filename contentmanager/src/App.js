@@ -1,10 +1,11 @@
 import Router from './router.js'
+import 'bootstrap/dist/css/bootstrap.min.css' ;
 
 function App() {
   return (
-    
-    <Router></Router>
-
+    <div>
+      <Router/>
+    </div>
   );
 }
 

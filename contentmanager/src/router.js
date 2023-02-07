@@ -1,18 +1,23 @@
 import React from 'react';
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Login from './Routes/login.js';
+
+
+const RouterList = createBrowserRouter([
+    
+    {
+        path: '/',
+        element: <Login/>
+    }
+
+
+]);
 
 function Router(){
 
 return(
 
-    <BrowserRouter>
-        <Routes>
-
-            <Route component={<Login/>} path="/"/>
-
-        </Routes>
-    </BrowserRouter>
+    <RouterProvider router={RouterList} />
 );
 
 }
