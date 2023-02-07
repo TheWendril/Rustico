@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css' ;
 
 function App() {
   return (
-    <div>
+    <div className="d-flex" style={{height: '100vh'}}>
       <Router/>
     </div>
   );

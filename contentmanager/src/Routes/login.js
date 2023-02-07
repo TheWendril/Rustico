@@ -25,11 +25,11 @@ function Login(){
 
 return(
         
-<Container className='d-flex justify-content-center h-100'>
+<Container className='d-flex align-items-center justify-content-center h-100'>
 
-    <Col sm={6} lg={3} className='my-auto'>
+    <Col sm={6} lg={3}>
     
-        <Row className="justify-content-center ">
+        <Row className="justify-content-center align-items-center">
             <h2 className='text-dark text-center'>Rustico CM</h2>
         </Row>
         <Form noValidate validated={formValidated} onSubmit={handleSubmit}>
@@ -54,7 +54,7 @@ return(
                 </Form.Group>
             </Row>
             
-            <Row className='mt-2'>
+            <Row className='mt-4'>
                 <Form.Group className='mb3' controlId='formLoginCheck'>
                     <Form.Check onChange={e => {SetAlwaysConnected(e.target.value);console.log(alwaysConnected)}} type='checkbox' label='Manter Conectado' />
                 </Form.Group>
