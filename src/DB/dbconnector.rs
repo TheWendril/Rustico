@@ -1,4 +1,5 @@
 use rusqlite;
+use dotenv::dotenv;
 
 pub struct DbConnector{
     pub conn: rusqlite::Connection 
@@ -6,6 +7,9 @@ pub struct DbConnector{
 
 impl DbConnector{    
     pub fn new() -> Self{
-        Self { conn: rusqlite::Connection::open("/home/wendril/rusticodb").unwrap() }
+
+        dotenv().ok();
+        let db_path = std::env::var("DBPATH").expect("Especifique o caminho do banco");
+        Self { conn: rusqlite::Connection::open(db_path).unwrap() }
     }
 }
