@@ -1,5 +1,6 @@
 use rusqlite;
 use dotenv::dotenv;
+use std::env;
 
 pub struct DbConnector{
     pub conn: rusqlite::Connection 
@@ -8,8 +9,7 @@ pub struct DbConnector{
 impl DbConnector{    
     pub fn new() -> Self{
 
-        dotenv().ok();
-        let db_path = std::env::var("DBPATH").expect("Especifique o caminho do banco");
+        let db_path = env::var("DB_PATH").unwrap();
         Self { conn: rusqlite::Connection::open(db_path).unwrap() }
     }
 }

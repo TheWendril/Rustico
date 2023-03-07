@@ -5,6 +5,9 @@ mod DB;
 use rocket::http::Header;
 use rocket::{Request, Response};
 use rocket::fairing::{Fairing, Info, Kind};
+extern crate dotenv;
+use dotenv::dotenv;
+use std::env;
 
 pub struct CORS;
 
@@ -32,6 +35,8 @@ fn main_page() -> &'static str{
 
 #[launch]
 fn rocket() -> _ {
+
+    dotenv().expect(".env não encontrado");
 
     rocket::build().mount("/", routes![main_page, Routes::Post::get_post, Routes::Post::insert_post, 
                                        Routes::Post::get_all_posts, Routes::Post::delete_post,
