@@ -1,6 +1,7 @@
 FROM rust
 WORKDIR /src
 COPY . .
-RUN cargo build --release
-CMD ["./target/release/Release"]
+RUN rustup default nightly 
+RUN cargo install --path .
+CMD ["./target/release/Rustico"]
 EXPOSE 8000
