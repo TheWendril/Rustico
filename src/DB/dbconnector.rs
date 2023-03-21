@@ -1,5 +1,4 @@
 use rusqlite;
-use dotenv::dotenv;
 use std::env;
 
 pub struct DbConnector{

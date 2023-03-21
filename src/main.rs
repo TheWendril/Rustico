@@ -1,13 +1,15 @@
 #[macro_use] extern crate rocket;
-mod Routes;
-mod Models;
-mod DB;
-use rocket::http::Header;
-use rocket::{Request, Response};
-use rocket::fairing::{Fairing, Info, Kind};
 extern crate dotenv;
 use dotenv::dotenv;
 use std::env;
+
+mod Routes;
+mod Models;
+mod DB;
+
+use rocket::http::Header;
+use rocket::{Request, Response};
+use rocket::fairing::{Fairing, Info, Kind};
 
 pub struct CORS;
 
@@ -41,6 +43,7 @@ fn rocket() -> _ {
     rocket::build().mount("/", routes![main_page, Routes::Post::get_post, Routes::Post::insert_post, 
                                        Routes::Post::get_all_posts, Routes::Post::delete_post,
                                        Routes::publisher::get_publisher_by_id, Routes::publisher::post_publisher,
-                                       Routes::publisher::get_all_publishers, Routes::publisher::delete_publisher])
+                                       Routes::publisher::get_all_publishers, Routes::publisher::delete_publisher,
+                                       Routes::login::login])
                     .attach(CORS)
 }
