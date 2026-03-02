@@ -3,6 +3,8 @@ name: Rust
 on:
   push:
     branches: [ "main" ]
+    tags:
+      - "v*"
   pull_request:
     branches: [ "main" ]
 
@@ -18,3 +20,11 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build
       run: cargo build --release --verbose 
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: target/release/rustico
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
