@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rustico | Tecnologia e Luta de Classes</title>
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --communist-red: #cc0000;
+            --rust-orange: #f74c00;
+            --gradient-accent: linear-gradient(90deg, var(--communist-red), var(--rust-orange));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Tipografia de código para elementos específicos */
+        .code-font {
+            font-family: 'Fira Code', Consolas, monospace;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--surface-color);
+            padding: 2rem 5%;
+            border-bottom: 4px solid;
+            border-image: var(--gradient-accent) 1;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            vertical-align: middle;
+        }
+
+
+        nav div h1 span {
+            color: var(--rust-orange);
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navegação */
+        nav {
+            background-color: #000;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--rust-orange);
+        }
+
+        /* Container Principal */
+        main {
+            /* max-width: 1000px; */
+            margin: 3rem 6rem;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Artigos */
+        .post-card {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--communist-red);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.1);
+            border-left: 4px solid var(--rust-orange);
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            text-decoration: none;
+        }
+
+        .post-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .post-title a:hover {
+            color: var(--rust-orange);
+        }
+
+        .post-excerpt {
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+
+        .read-more:hover {
+            opacity: 0.9;
+        }
+
+        /* Barra Lateral */
+        aside {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        aside h3 {
+            color: var(--rust-orange);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .manifesto-box {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: #333;
+            color: var(--text-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .tag:hover {
+            border-color: var(--communist-red);
+            color: var(--rust-orange);
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #000;
+            color: var(--text-secondary);
+            margin-top: 3rem;
+            border-top: 2px solid var(--communist-red);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;           
+            padding: 15px 40px;
+        }
+
+        .nav-left p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 20px;
+        }
+
+/* =========================================
+           ESTILIZAÇÃO DA SEÇÃO MAIN .about-page
+           ========================================= */
+        
+        /* Container principal */
+        .about-page {
+            /* max-width: 900px; */
+            margin: 4rem 2rem;
+            padding: 0 20px;
+        }
+
+        /* --- Seção Hero (Cabeçalho da página) --- */
+        .about-hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 4px solid;
+            border-image: var(--gradient-ideologic) 1; /* Linha divisória com o gradiente */
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .about-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* --- Container do Conteúdo --- */
+        .about-content {
+            display: grid;
+            gap: 40px; /* Espaço entre os artigos */
+        }
+
+        /* --- Estilização dos Artigos (Cartões) --- */
+        .about-content article {
+            background-color: var(--bg-panel);
+            padding: 30px;
+            border-radius: 4px; /* Cantos quase retos */
+            border-left: 5px solid var(--rust-orange); /* Detalhe padrão Rust */
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* Títulos dos Artigos (H2) */
+        .about-content h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Pequeno ícone decorativo antes do H2 (opcional, brutalista) */
+        .about-content h2::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-ideologic);
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+
+        /* Parágrafos dentro dos artigos */
+        .about-content p {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Destaca o último parágrafo do artigo "Luta de Classes" */
+        .about-content article:nth-child(3) p:last-of-type {
+            background-color: rgba(204, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 4px;
+            color: #ff9999;
+            font-weight: bold;
+            border: 1px solid rgba(204, 0, 0, 0.3);
+        }
+
+        /* --- Estilização da Lista (Nosso Compromisso) --- */
+        .about-content ul {
+            list-style: none; /* Remove bolinhas padrão */
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .about-content li {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            font-family: var(--font-code); /* Estilo mais técnico para a lista */
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .about-content li:hover {
+            background-color: rgba(214, 93, 14, 0.05); /* Fundo Laranja sutil */
+            border-color: rgba(214, 93, 14, 0.3);
+            color: var(--rust-orange);
+        }
+
+        /* Ícone da lista (Estrela Vermelha ou Marcador Industrial) */
+        .about-content li::before {
+            content: '★'; /* Estrela comunista */
+            color: var(--communist-red);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar code-font">
+        <div class="nav-left">
+            <h1 class="code-font"> <img style="vertical-align: middle;" src="/static/images/logo.png" width="60px" height="60px" alt="Logo Rustico"> Rust<span>ico</span></h1>
+            <p style="color:#5c5c5c; margin-top: 4px;">Tecnologia, Código e Classe</p>
+        </div>
+
+        <div class="nav-right">
+            <a href="/">&lt; Início /&gt;</a>
+            <a href="/artigos">&lt; Artigos /&gt;</a>
+            <a href="/sobre" style="color: #f74c00;">&lt; Sobre o Projeto /&gt;</a>
+        </div>
+    </nav>
+
+    <main class="about-page">
+
+        <section class="about-hero">
+            <h1 class="code-font" style="color: #f74c00;">Sobre o Rustico</h1>
+            <p class="subtitle">
+                Código não é neutro. Tecnologia também é luta de classes.
+            </p>
+        </section>
+
+        <section class="about-content">
+
+            <article>
+                <h2>Por que o Rustico existe?</h2>
+                <p>
+                    O Rustico nasce como um espaço de reflexão crítica sobre tecnologia,
+                    desenvolvimento de software e as estruturas de poder que moldam
+                    o ecossistema digital contemporâneo.
+                </p>
+                <p>
+                    Não acreditamos na narrativa da inovação neutra. Cada framework,
+                    cada infraestrutura em nuvem e cada modelo de negócio carrega
+                    interesse econômicos, relações de exploração e disputas ideológicas.
+                </p>
+            </article>
+
+            <article>
+                <h2>Rust como ferramenta política</h2>
+                <p>
+                    Escolhemos Rust não apenas por performance e segurança de memória,
+                    mas por sua filosofia: controle explícito, responsabilidade,
+                    previsibilidade e autonomia.
+                </p>
+                <p>
+                    Em um mundo dominado por abstrações opacas e dependência de grandes
+                    plataformas, Rust representa uma retomada do domínio técnico
+                    pelas mãos de quem escreve o código.
+                </p>
+            </article>
+
+            <article>
+                <h2>Tecnologia e luta de classes</h2>
+                <p>
+                    Desenvolvedores são trabalhadores. Engenheiros são trabalhadores.
+                    Designers são trabalhadores.
+                </p>
+                <p>
+                    O Rustico questiona o mito do “gênio individual” e coloca em
+                    evidência o caráter coletivo da produção tecnológica.
+                    Software é fruto de trabalho social.
+                </p>
+                <p>
+                    Se há exploração na fábrica, há exploração no datacenter.
+                    Se há alienação na linha de montagem, há alienação no backlog.
+                </p>
+            </article>
+
+            <article>
+                <h2>Nosso compromisso</h2>
+                <ul>
+                    <li>Defender software livre e infraestrutura aberta</li>
+                    <li>Criticar o monopólio das Big Techs</li>
+                    <li>Produzir conteúdo técnico com consciência política</li>
+                    <li>Fortalecer comunidades independentes</li>
+                </ul>
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p class="code-font">Trabalhadores de tecnologia do mundo, uni-vos!</p>
+        <p><small>&copy; 2026 Coletivo Rustico. Todo o código fonte pertence à classe trabalhadora.</small></p>
+    </footer>
+
+</body>
+</html>

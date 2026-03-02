@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rustico | Tecnologia e Luta de Classes</title>
+    <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --communist-red: #cc0000;
+            --rust-orange: #f74c00;
+            --gradient-accent: linear-gradient(90deg, var(--communist-red), var(--rust-orange));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Tipografia de código para elementos específicos */
+        .code-font {
+            font-family: 'Fira Code', Consolas, monospace;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--surface-color);
+            padding: 2rem 5%;
+            border-bottom: 4px solid;
+            border-image: var(--gradient-accent) 1;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            vertical-align: middle;
+        }
+
+
+        nav div h1 span {
+            color: var(--rust-orange);
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navegação */
+        nav {
+            background-color: #000;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--rust-orange);
+        }
+
+        /* Container Principal */
+        main {
+            /* max-width: 1000px; */
+            margin: 4rem 2rem;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(90deg, rgb(238, 88, 2), rgb(255, 44, 44));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .post-cover img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+
+        /* Barra Lateral */
+        aside {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        aside h3 {
+            color: var(--rust-orange);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+
+        .manifesto-box {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: #333;
+            color: var(--text-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .tag:hover {
+            border-color: var(--communist-red);
+            color: var(--rust-orange);
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #000;
+            color: var(--text-secondary);
+            margin-top: 3rem;
+            border-top: 2px solid var(--communist-red);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;           
+            padding: 15px 40px;
+        }
+
+        .nav-left p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        .post-content h1 {
+            color: #f74c00;
+        }
+        .post-content h3 {
+            color: #c53c01;
+        }
+                .post-content h2 {
+            color: #992e00;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar code-font">
+        <div class="nav-left">
+            <h1 class="code-font"> <img style="vertical-align: middle;" src="/static/images/logo.png" width="60px" height="60px" alt="Logo Rustico"> Rust<span>ico</span></h1>
+            <p style="color:#5c5c5c; margin-top: 4px;">Tecnologia, Código e Classe</p>
+        </div>
+
+        <div class="nav-right">
+            <a href="/">&lt; Início /&gt;</a>
+            <a href="/artigos">&lt; Artigos /&gt;</a>
+            <a href="/sobre">&lt; Sobre o Projeto /&gt;</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <article class="post-article">
+
+            <header class="post-header">
+                <h1 class="post-title">{{ article.title }}</h1>
+
+                <div class="post-meta code-font">
+                    Publicado em 
+                    {{ article.created_at | date(format="%d de %B de %Y") }}
+                    • Por {{ article.author }}
+                </div>
+            </header>
+
+            <section style="margin-top: 10px;" class="post-content">
+                {{ article.content | safe }}
+            </section>
+
+        </article>
+
+    </main>
+
+    <footer>
+        <p class="code-font">Trabalhadores de tecnologia do mundo, uni-vos!</p>
+        <p><small>&copy; 2026 Coletivo Rustico. Todo o código fonte pertence à classe trabalhadora.</small></p>
+    </footer>
+
+</body>
+</html>
