@@ -378,7 +378,7 @@ async fn rocket() -> _ {
         .manage(db)
         .attach(Template::fairing())
         .attach(cors)
-        .mount("/static", FileServer::from(relative!("static")))
+        .mount("/static", FileServer::from("static"))
         .mount(
             "/",
             routes![
