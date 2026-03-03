@@ -5,300 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rustico | Tecnologia e Luta de Classes</title>
     <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.getElementById(burger.dataset.target);
+
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        });
+    </script>
+
     <style>
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --communist-red: #cc0000;
-            --rust-orange: #f74c00;
-            --gradient-accent: linear-gradient(90deg, var(--communist-red), var(--rust-orange));
+        --bulma-primary-h: 20;
+        --bulma-primary-s: 90%;
+        --bulma-primary-l: 55%;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .title { 
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
         }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        .navbar-item { 
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
         }
 
-        /* Tipografia de código para elementos específicos */
-        .code-font {
-            font-family: 'Fira Code', Consolas, monospace;
-        }
-
-        /* Cabeçalho */
-        header {
-            background-color: var(--surface-color);
-            padding: 2rem 5%;
-            border-bottom: 4px solid;
-            border-image: var(--gradient-accent) 1;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            vertical-align: middle;
-        }
-
-
-        nav div h1 span {
-            color: var(--rust-orange);
-        }
-
-        header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Navegação */
-        nav {
-            background-color: #000;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--rust-orange);
-        }
-
-        /* Container Principal */
-        main {
-            max-width: 1000px;
-            margin: 3rem auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            flex: 1;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Artigos */
-        .post-card {
-            background-color: var(--surface-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--communist-red);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.1);
-            border-left: 4px solid var(--rust-orange);
-        }
-
-        .post-meta {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .post-title {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            text-decoration: none;
-        }
-
-        .post-title a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .post-title a:hover {
-            color: var(--rust-orange);
-        }
-
-        .post-excerpt {
-            margin-bottom: 1.5rem;
-        }
-
-        .read-more {
-            display: inline-block;
-            background: var(--gradient-accent);
-            color: #fff;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: opacity 0.3s;
-        }
-
-        .read-more:hover {
-            opacity: 0.9;
-        }
-
-        /* Barra Lateral */
-        aside {
-            background-color: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            height: fit-content;
-        }
-
-        aside h3 {
-            color: var(--rust-orange);
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.5rem;
-        }
-
-        .manifesto-box {
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background-color: #333;
-            color: var(--text-primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            text-decoration: none;
-            border: 1px solid transparent;
-        }
-
-        .tag:hover {
-            border-color: var(--communist-red);
-            color: var(--rust-orange);
-        }
-
-        /* Rodapé */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #000;
-            color: var(--text-secondary);
-            margin-top: 3rem;
-            border-top: 2px solid var(--communist-red);
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;           
-            padding: 15px 40px;
-        }
-
-        .nav-left p {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 20px;
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 30%, #130000, transparent 40%),
+                        radial-gradient(circle at 80% 70%, #140900, transparent 40%),
+                        radial-gradient(circle at 50% 50%, #241104, #0f0000 70%);
         }
 
     </style>
+
 </head>
-<body>
 
-    <nav class="navbar code-font">
-        <div class="nav-left">
-            <h1 class="code-font"> <img style="vertical-align: middle;" src="/static/images/logo.png" width="60px" height="60px" alt="Logo Rustico"> Rust<span>ico</span></h1>
-            <p style="color:#5c5c5c; margin-top: 4px;">Tecnologia, Código e Classe</p>
+
+<body class="is-flex is-flex-direction-column hero-bg" style="min-height: 100vh;">
+
+    <nav class="navbar has-background-primary-05" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div href="/" class="title m-3 is-flex is-align-items-center"> <img src="/static/images/logo.png" width="45px" height="45px" alt="Logo Rustico"> <span class="ml-2 mb-1"> Rust<span class="has-text-primary">ico</span> </span></div>
+            <a role="button"
+                class="navbar-burger has-text-primary"
+                aria-label="menu"
+                aria-expanded="false"
+                data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
 
-        <div class="nav-right">
-            <a href="/" style="color: #f74c00;">&lt; Início /&gt;</a>
-            <a href="/artigos">&lt; Artigos /&gt;</a>
-            <a href="/sobre">&lt; Sobre o Projeto /&gt;</a>
-        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item has-text-primary" href="/" aria-current="page">
+                    &lt; Início /&gt;
+                </a>
+                <a class="navbar-item has-text-primary" href="/artigos">
+                    &lt; Artigos /&gt;
+                </a>
+                <a class="navbar-item has-text-primary" href="/sobre">
+                    &lt; Sobre o Projeto /&gt;
+                </a>
+            </div>
+        </div>    
     </nav>
 
-    <main>
-        <section class="feed">
+    <main class="container columns">
+        <section class="column is-two-thirds mt-5">
             {% for post in feed %}
-                <article class="post-card">
-                    <div class="post-meta code-font">
+                <article class="section box is-rounded has-background-primary-00" style="border-left: 6px solid #a70808;">
+                    <div class="subtitle has-text-grey">
                         Publicado em {{ post.created_at | date(format="%d de %B de %Y") }}
                         • Por {{ post.author }}
                     </div>
 
-                    <h2 class="post-title">
-                        <a href="/post/{{ post.slug }}">
+                    <h2 class="title">
+                        <a class="has-text-primary" href="/post/{{ post.slug }}">
                             {{ post.title }}
                         </a>
                     </h2>
 
-                    <p class="post-excerpt">
+                    <p class="content ">
                         {{ post.content | striptags | truncate(length=180) }}
                     </p>
 
-                    <a href="/post/{{ post.slug }}" class="read-more code-font">
+                    <a href="/post/{{ post.slug }}"><button class="button is-primary is-dark">
                         Ler Artigo completo
-                    </a>
+                    </button></a>
                 </article>
             {% endfor %}
         </section>
 
-        <aside>
-            <div class="manifesto-box">
-                <h3>Sobre o Rustico</h3>
-                <p>"O Rustico nasce como um porta-voz dos desenvolvedores cansados da opressão travestida de inovação. E sim, o site é feito em Rust!"</p>
-            </div>
-
-            <div class="tags">
-                <h3>Tags Populares</h3>
-                <div class="tag-cloud code-font">
-                    <a href="#" class="tag">#RustLang</a>
-                    <a href="#" class="tag">#Marxismo</a>
-                    <a href="#" class="tag">#OpenSource</a>
-                    <a href="#" class="tag">#LutaDeClasses</a>
-                    <a href="#" class="tag">#BigTech</a>
-                    <a href="#" class="tag">#WebAssembly</a>
+        <aside class="column section">
+            <div class="has-background-primary-05 p-5 box is-rounded">
+                <div class="mb-4">
+                    <h3 class="title">Sobre o Rustico</h3>
+                    <hr class="has-background-primary"></hr>
+                    <p>"O Rustico nasce como um porta-voz dos desenvolvedores cansados da opressão travestida de inovação. E sim, o site é feito em Rust!"</p>
+                </div>
+                
+                <div class="subtitle">
+                    <h3 class="mb-2 mt-6">Tags Populares</h3>
+                    <div>
+                        <a href="#" class="tag">#RustLang</a>
+                        <a href="#" class="tag">#Marxismo</a>
+                        <a href="#" class="tag">#OpenSource</a>
+                        <a href="#" class="tag">#LutaDeClasses</a>
+                        <a href="#" class="tag">#BigTech</a>
+                        <a href="#" class="tag">#WebAssembly</a>
+                    </div>
                 </div>
             </div>
         </aside>
     </main>
 
-    <footer>
-        <p class="code-font">Trabalhadores de tecnologia do mundo, uni-vos!</p>
-        <p><small>&copy; 2026 Coletivo Rustico. Todo o código fonte pertence à classe trabalhadora.</small></p>
+    <footer class="footer has-background-primary-00" style="max-height: 130px;">
+        <div class="content has-text-centered">
+            <p>Trabalhadores de tecnologia do mundo, uni-vos!</p>
+            <p><small>&copy; 2026 Coletivo Rustico. Todo o código fonte pertence à classe trabalhadora.</small></p>
+        </div>
     </footer>
 
 </body>

@@ -1,273 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rustico: conteúdo sobre tecnologia, sociedade e luta de classes.">
     <title>Rustico | Tecnologia e Luta de Classes</title>
     <link rel="icon" type="image/png" href="/static/images/logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     
-    <meta property="og:title" content="Rustico | Tecnologia e Luta de Classes">
-    <meta property="og:description" content="Rustico: conteúdo sobre tecnologia, sociedade e luta de classes.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rustico.dev">
-    <meta property="og:image" content="https://rustico.dev/static/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.getElementById(burger.dataset.target);
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rustico | Tecnologia e Luta de Classes">
-    <meta name="twitter:description" content="Rustico: conteúdo sobre tecnologia, sociedade e luta de classes.">
-    <meta name="twitter:image" content="https://rustico.dev/static/images/logo.png">
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('is-active');
+                menu.classList.toggle('is-active');
+            });
+        });
+    </script>
 
     <style>
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --communist-red: #cc0000;
-            --rust-orange: #f74c00;
-            --gradient-accent: linear-gradient(90deg, var(--communist-red), var(--rust-orange));
+        --bulma-primary-h: 20;
+        --bulma-primary-s: 90%;
+        --bulma-primary-l: 55%;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .borda {
+            border-left: 6px solid #920a00;
         }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Tipografia de código para elementos específicos */
-        .code-font {
-            font-family: 'Fira Code', Consolas, monospace;
-        }
-
-        /* Cabeçalho */
-        header {
-            background-color: var(--surface-color);
-            padding: 2rem 5%;
-            border-bottom: 4px solid;
-            border-image: var(--gradient-accent) 1;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            vertical-align: middle;
-        }
-
-        .p-initial { 
-            color: #f74c00;
-            font-size: 1.7rem;
-        }
-
-        nav div h1 span {
-            color: var(--rust-orange);
-        }
-
-        header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Navegação */
-        nav {
-            background-color: #000;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--rust-orange);
-        }
-
-        /* Container Principal */
-        main {
-            /* max-width: 1000px; */
-            margin: 4rem 2rem;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            flex: 1;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
+        @media screen and (max-width: 1023px) {
+            .borda {
+                border-left: none;
             }
         }
 
-        .post-container {
-            max-width: 800px;
-            margin: 4rem auto;
-            padding: 0 1.5rem;
+        .title { 
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 600;
+            font-style: normal;
         }
 
-        .post-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            background: linear-gradient(90deg, rgb(238, 88, 2), rgb(253, 8, 8));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .navbar-item { 
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
         }
 
-        .post-meta {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        .post-cover img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-
-        /* Barra Lateral */
-        aside {
-            background-color: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            height: fit-content;
-        }
-
-        aside h3 {
-            color: var(--rust-orange);
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.5rem;
-        }
-
-        .manifesto-box {
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            background-color: #333;
-            color: var(--text-primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            text-decoration: none;
-            border: 1px solid transparent;
-        }
-
-        .tag:hover {
-            border-color: var(--communist-red);
-            color: var(--rust-orange);
-        }
-
-        /* Rodapé */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #000;
-            color: var(--text-secondary);
-            margin-top: 3rem;
-            border-top: 2px solid var(--communist-red);
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;           
-            padding: 15px 40px;
-        }
-
-        .nav-left p {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 20px;
-        }
-
-        .post-content { 
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-        }
-
-        .post-content h1 {
-            color: #f74c00;
-        }
-        .post-content h3 {
-            color: #c53c01;
-        }
-                .post-content h2 {
-            color: #992e00;
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 30%, #1d0000, transparent 40%),
+                        radial-gradient(circle at 80% 70%, #140900, transparent 40%),
+                        radial-gradient(circle at 50% 50%, #381a06, #0f0000 70%);
         }
 
     </style>
+
 </head>
-<body>
 
-    <nav class="navbar code-font">
-        <div class="nav-left">
-            <h1 class="code-font"> <img style="vertical-align: middle;" src="/static/images/logo.png" width="60px" height="60px" alt="Logo Rustico"> Rust<span>ico</span></h1>
-            <p style="color:#5c5c5c; margin-top: 4px;">Tecnologia, Código e Classe</p>
+<body class="is-flex is-flex-direction-column hero-bg" style="min-height: 100vh;">
+
+    <nav class="navbar has-background-primary-05" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div href="/" class="title m-3 is-flex is-align-items-center"> <img src="/static/images/logo.png" width="45px" height="45px" alt="Logo Rustico"> <span class="ml-2 mb-1"> Rust<span class="has-text-primary">ico</span> </span></div>
+            <a role="button"
+                class="navbar-burger has-text-primary"
+                aria-label="menu"
+                aria-expanded="false"
+                data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
 
-        <div class="nav-right">
-            <a href="/">&lt; Início /&gt;</a>
-            <a href="/artigos">&lt; Artigos /&gt;</a>
-            <a href="/sobre">&lt; Sobre o Projeto /&gt;</a>
-        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item has-text-primary" href="/" aria-current="page">
+                    &lt; Início /&gt;
+                </a>
+                <a class="navbar-item has-text-primary" href="/artigos">
+                    &lt; Artigos /&gt;
+                </a>
+                <a class="navbar-item has-text-primary" href="/sobre">
+                    &lt; Sobre o Projeto /&gt;
+                </a>
+            </div>
+        </div>    
     </nav>
 
-    <main>
+    <main class="container">
 
-        <article class="post-article">
+        <article class="section">
 
             <header class="post-header">
-                <h1 class="post-title">{{ article.title }}</h1>
+                <h1 class="title">{{ article.title }}</h1>
 
-                <div class="post-meta code-font">
+                <div class="subtitle has-text-grey is-size-6">
                     Publicado em 
                     {{ article.created_at | date(format="%d de %B de %Y") }}
                     • Por {{ article.author }}
                 </div>
             </header>
 
-            <section style="margin-top: 10px;" class="post-content">
+            <section class="content mt-6">
                 {{ article.content | safe }}
             </section>
 
@@ -275,9 +120,11 @@
 
     </main>
 
-    <footer>
-        <p class="code-font">Trabalhadores de tecnologia do mundo, uni-vos!</p>
-        <p><small>&copy; 2026 Coletivo Rustico. Todo o código fonte pertence à classe trabalhadora.</small></p>
+    <footer class="footer has-background-primary-00 mt-4" style="max-height: 130px;">
+        <div class="content has-text-centered">
+            <p>Trabalhadores de tecnologia do mundo, uni-vos!</p>
+            <p><small>&copy; 2026 Coletivo Rustico. Todo o código fonte pertence à classe trabalhadora.</small></p>
+        </div>
     </footer>
 
 </body>
