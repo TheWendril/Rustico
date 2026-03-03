@@ -3,16 +3,15 @@ extern crate rocket;
 
 use rocket::form::Form;
 use rocket::response::content::RawHtml;
+use rocket::response::content::RawXml;
 use rocket::State;
 use serde::{Deserialize, Serialize};
 use sqlx::{Pool, Sqlite, sqlite::SqlitePoolOptions};
 use rocket_dyn_templates::{Template, context};
 use chrono::NaiveDateTime;
 use deunicode::deunicode;
-use rocket::fs::{FileServer, relative};
+use rocket::fs::{FileServer};
 use rocket_cors::{AllowedOrigins, CorsOptions};
-
-
 
 type Db = Pool<Sqlite>;
 
@@ -50,6 +49,39 @@ async fn index(db: &State<Db>) -> Template {
         feed: posts
     })
 
+}
+
+#[get("/sitemap.xml")]
+async fn sitemap(db: &State<Db>) -> RawXml<String> {
+
+    let posts = sqlx::query_as::<_, Post>(
+        "SELECT * FROM posts"
+    ).fetch_all(db.inner())
+     .await
+     .unwrap();
+
+    let mut urls = String::new();
+
+    for post in posts {
+        urls.push_str(&format!(
+            "<url><loc>https://rustico.dev/post/{}</loc></url>",
+            post.slug
+        ));
+    }
+
+    RawXml(
+        format!(r#"<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            {}
+        </urlset>
+    "#, urls))
+}
+
+#[get("/robots.txt")]
+fn robots() -> &'static str {
+    "User-agent: *
+Allow: /
+Sitemap: https://rustico.dev/sitemap.xml"
 }
 
 #[get("/artigos")]
@@ -383,6 +415,8 @@ async fn rocket() -> _ {
             "/",
             routes![
                 index,
+                sitemap,
+                robots,
                 articles,
                 about,
                 show_post,
